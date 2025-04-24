@@ -16,10 +16,9 @@ DoctorGoatFramework - Linux System Security Audit and Hardening Framework
 
 # This software is provided "as is" without any warranties. Users use it at their own risk.
 
-#########################################################################################
-#  Securonis GNU/Linux Network and System Technologies Research Laboratory              #
-#########################################################################################
-
+#############################################################################
+#  Securonis GNU/Linux Network and System Technologies Research Laboratory  #
+#############################################################################
 
 import os
 import sys
