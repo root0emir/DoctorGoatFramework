@@ -46,7 +46,7 @@ from lib.modules.report_generator import ReportGenerator
 from lib.utils.helpers import check_root, is_linux, backup_system
 
 __version__ = "1.0"
-__author__ = " root0emir - Securonis GNU/Linux Network and System Technologies Research Laboratory"
+__author__ = "root0emir"
 
 console = Console()
 
