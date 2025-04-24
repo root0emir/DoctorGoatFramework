@@ -2,7 +2,8 @@
 
 DoctorGoatFramework is an advanced CLI security framework designed for comprehensive security auditing and hardening of Linux-based systems.
 
-![doctorgoatpng](https://github.com/user-attachments/assets/f0d75ea2-f259-46fc-843e-ab2732150340)
+
+![doctorgoatlogogit](https://github.com/user-attachments/assets/a480c92a-52cf-457f-8748-4a1f4989b549)
 
 
 
