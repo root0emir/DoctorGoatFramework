@@ -45,7 +45,7 @@ DoctorGoatFramework is an advanced CLI security framework designed for comprehen
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/DoctorGoatFramework.git
+git clone https://github.com/root0emir/DoctorGoatFramework.git
 cd DoctorGoatFramework
 
 # Install dependencies
@@ -221,4 +221,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👥 Author
 
-root0emir - Securonis GNU/Linux Network and System Technologies Research Laboratory
+root0emir 
