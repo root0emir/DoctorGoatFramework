@@ -1,0 +1,42 @@
+description: "Medium security kernel hardening parameters"
+security_level: "medium"
+parameters:
+  # Network security
+  net.ipv4.conf.all.accept_redirects: 0
+  net.ipv4.conf.default.accept_redirects: 0
+  net.ipv4.conf.all.secure_redirects: 0
+  net.ipv4.conf.default.secure_redirects: 0
+  net.ipv4.conf.all.accept_source_route: 0
+  net.ipv4.conf.default.accept_source_route: 0
+  net.ipv4.conf.all.rp_filter: 1
+  net.ipv4.conf.default.rp_filter: 1
+  net.ipv4.icmp_echo_ignore_broadcasts: 1
+  net.ipv4.icmp_ignore_bogus_error_responses: 1
+  net.ipv4.tcp_syncookies: 1
+  net.ipv4.tcp_max_syn_backlog: 2048
+  net.ipv4.tcp_synack_retries: 2
+  net.ipv4.tcp_syn_retries: 5
+  
+  # Kernel hardening
+  kernel.randomize_va_space: 2
+  kernel.kptr_restrict: 1
+  kernel.dmesg_restrict: 1
+  fs.protected_hardlinks: 1
+  fs.protected_symlinks: 1
+  kernel.sysrq: 0
+  
+  # IPv6 security (if IPv6 is used)
+  net.ipv6.conf.all.accept_redirects: 0
+  net.ipv6.conf.default.accept_redirects: 0
+  net.ipv6.conf.all.accept_source_route: 0
+  net.ipv6.conf.default.accept_source_route: 0
+  
+recommendations:
+  - "These parameters provide a balanced approach to kernel security"
+  - "Suitable for most production environments"
+  - "Minimal impact on system performance and functionality"
+  - "Consider high or extreme security levels for sensitive environments"
+
+backup:
+  enabled: true
+  backup_file: "/etc/sysctl.d/99-security-backup.conf"

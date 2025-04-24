@@ -1,0 +1,184 @@
+schema_version: "1.0"
+created_at: "2025-04-24 22:05:00"
+last_modified: "2025-04-24 22:05:00"
+
+general:
+  report_format: "html"
+  max_threads: 4
+  timeout: 30
+  log_level: "INFO"
+  backup_enabled: true
+  backup_retention_days: 7
+
+security:
+  default_security_level: "medium"  # low, medium, high, extreme
+  user_audit:
+    enabled: true
+    check_root_access: true
+    check_sudo_config: true
+    check_password_policy: true
+    check_inactive_users: true
+    check_user_permissions: true
+    check_ssh_keys: true
+  network_audit:
+    enabled: true
+    check_open_ports: true
+    check_firewall_rules: true
+    check_ssh_config: true
+    check_network_services: true
+    check_listening_services: true
+    check_dns_config: true
+    port_scan_timeout: 30
+  software_audit:
+    enabled: true
+    check_updates: true
+    check_installed_packages: true
+    check_vulnerable_packages: true
+    check_package_integrity: true
+    check_service_versions: true
+    vulnerability_database: "nvd"  # nvd, oval, etc.
+  filesystem_audit:
+    enabled: true
+    check_permissions: true
+    check_suid_sgid: true
+    check_world_writable: true
+    check_tmp_dirs: true
+    check_sticky_bits: true
+    check_file_integrity: true
+    excluded_paths:
+      - "/proc"
+      - "/sys"
+      - "/dev"
+      - "/run"
+      - "/media"
+      - "/mnt"
+  kernel_audit:
+    enabled: true
+    check_sysctl_params: true
+    check_kernel_modules: true
+    check_kernel_hardening: true
+    check_boot_params: true
+  service_audit:
+    enabled: true
+    check_service_configs: true
+    check_service_permissions: true
+    check_startup_scripts: true
+    services:
+      - "ssh"
+      - "apache2"
+      - "nginx"
+      - "mysql"
+      - "postgresql"
+      - "ftp"
+      - "nfs"
+      - "smb"
+      - "cups"
+      - "cron"
+      - "docker"
+
+hardening:
+  kernel:
+    enabled: true
+    apply_sysctl: true
+    backup_before_changes: true
+    parameters:
+      # Network security
+      net.ipv4.conf.all.accept_redirects: 0
+      net.ipv4.conf.default.accept_redirects: 0
+      net.ipv4.conf.all.accept_source_route: 0
+      net.ipv4.conf.default.accept_source_route: 0
+      net.ipv4.conf.all.rp_filter: 1
+      net.ipv4.conf.default.rp_filter: 1
+      net.ipv4.icmp_echo_ignore_broadcasts: 1
+      net.ipv4.icmp_ignore_bogus_error_responses: 1
+      net.ipv4.tcp_syncookies: 1
+      # Kernel hardening
+      kernel.randomize_va_space: 2
+      kernel.kptr_restrict: 2
+      kernel.dmesg_restrict: 1
+      fs.protected_hardlinks: 1
+      fs.protected_symlinks: 1
+  ssh:
+    enabled: true
+    port: 22
+    permit_root_login: false
+    password_authentication: false
+    pubkey_authentication: true
+    settings:
+      Protocol: "2"
+      PermitRootLogin: "no"
+      PasswordAuthentication: "no"
+      PubkeyAuthentication: "yes"
+      PermitEmptyPasswords: "no"
+      X11Forwarding: "no"
+      MaxAuthTries: "4"
+      ClientAliveInterval: "300"
+      ClientAliveCountMax: "0"
+  firewall:
+    enabled: true
+    default_policy: "deny"
+    allowed_services:
+      - "ssh"
+    allowed_ports:
+      - 22
+  authentication:
+    enabled: true
+    password_policy: true
+    account_lockout: true
+    pam_configuration: true
+  permissions:
+    enabled: true
+    fix_file_permissions: true
+    fix_directory_permissions: true
+  updates:
+    enabled: true
+    auto_update: true
+    security_only: true
+
+compliance:
+  enabled: true
+  standards:
+    - name: "CIS"
+      enabled: true
+      level: 1  # 1 or 2
+      profile: "server"  # server or workstation
+    - name: "NIST"
+      enabled: false
+      profile: "800-53"
+  custom_profiles_dir: "profiles"
+
+monitoring:
+  enabled: false
+  interval: 300  # seconds
+  events:
+    - "security"
+    - "auth"
+    - "network"
+  alert_threshold: "medium"
+  log_dir: "logs/monitoring"
+
+reporting:
+  include_system_info: true
+  severity_levels:
+    - "critical"
+    - "high"
+    - "medium"
+    - "low"
+    - "info"
+  include_recommendations: true
+  include_remediation: true
+  output_formats:
+    - "html"
+    - "json"
+    - "pdf"
+    - "txt"
+  report_dir: "reports"
+  company_name: "Securonis GNU/Linux Network and System Technologies Research Laboratory"
+  logo_path: ""
+  email_report:
+    enabled: false
+    smtp_server: ""
+    smtp_port: 587
+    smtp_user: ""
+    smtp_password: ""
+    recipients: []
